@@ -1,5 +1,6 @@
 import argparse
-import file_source
+import source.file_source.run_with_file_browser as file_source
+import source.funcube_source.funcube_source as funcube_source
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-v", "--verbose", required=False, default=False, action="store_true",
@@ -12,9 +13,11 @@ args = parser.parse_args()
 
 if args.source == "file":
     print "file"
+    file_source.application()
 elif args.source == "pluto":
     print "pluto"
 elif args.source == "funcubeplus":
     print "Funcube plus"
+    funcube_source.main()
 else:
     print "Any"
