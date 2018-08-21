@@ -12,16 +12,16 @@ parser.add_argument("-s", "--source", required=True, default="",
                     help="Source:")
 args = parser.parse_args()
 
-if args.source == "file":
-    print "file"
+if args.source == "iq_file":
+    print "IQ File"
     file_source.application()
 elif args.source == "pluto":
-    print "pluto"
-elif args.source == "funcubeplus":
-    print "Funcube plus"
+    print "Pluto"
+elif args.source == "fcd+":
+    print "Funcube Dongle Plus"
     funcube_source.main()
 elif args.source == "demodulator":
     print "demodulator"
     demodulator.main()
 else:
-    print "Any"
+    print "Wrong parameter!"
