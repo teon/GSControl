@@ -27,7 +27,7 @@ class GRCThread(QtCore.QThread):
 
     def run(self):
         print "start thread"
-        file_source.main(path_to_iq_file=self.path)
+        file_source.main(options=self.path)
         self.finished_signal.emit(True)
         print "stop thread"
 

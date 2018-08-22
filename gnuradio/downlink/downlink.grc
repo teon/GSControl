@@ -21,6 +21,10 @@
       <value></value>
     </param>
     <param>
+      <key>copyright</key>
+      <value></value>
+    </param>
+    <param>
       <key>description</key>
       <value></value>
     </param>
@@ -737,7 +741,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -898,7 +902,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -988,7 +992,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1164,6 +1168,10 @@
   <block>
     <key>frame_sink</key>
     <param>
+      <key>addr</key>
+      <value>tcp://*:7001</value>
+    </param>
+    <param>
       <key>alias</key>
       <value></value>
     </param>
@@ -1172,8 +1180,12 @@
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1186,14 +1198,6 @@
     <param>
       <key>id</key>
       <value>frame_sink_1</value>
-    </param>
-    <param>
-      <key>addr</key>
-      <value>tcp://*:7001</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
     </param>
   </block>
   <block>
@@ -1262,12 +1266,20 @@
       <value></value>
     </param>
     <param>
+      <key>check_fcs</key>
+      <value>True</value>
+    </param>
+    <param>
       <key>comment</key>
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1282,20 +1294,12 @@
       <value>kiss_hdlc_deframer_0</value>
     </param>
     <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>check_fcs</key>
-      <value>True</value>
+      <key>maxoutbuf</key>
+      <value>0</value>
     </param>
     <param>
       <key>max_length</key>
       <value>10000</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -1317,8 +1321,12 @@
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1331,10 +1339,6 @@
     <param>
       <key>id</key>
       <value>kiss_nrzi_decode_0</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -3696,8 +3700,20 @@
       <value></value>
     </param>
     <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>direction</key>
+      <value>Downlink</value>
+    </param>
+    <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>downlink_frames</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3710,18 +3726,6 @@
     <param>
       <key>id</key>
       <value>save_frame_0</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>direction</key>
-      <value>Downlink</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>downlink_frames</value>
     </param>
   </block>
   <block>
