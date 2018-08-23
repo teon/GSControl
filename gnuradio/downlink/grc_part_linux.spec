@@ -30,4 +30,5 @@ coll = COLLECT(exe,
                a.datas,
                strip=False,
                upx=True,
-               name='grc_part')
+               name='grc_part',
+               icon='/home/pwsat2/GSControl/gnuradio/downlink/pw-sat2-logo.ico')
