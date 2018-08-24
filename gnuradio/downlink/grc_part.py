@@ -2,6 +2,7 @@ import argparse
 import source.file_source.iq_file_main as file_source
 import source.funcube_source.funcube_source as funcube_source
 import source.plutosdr_source.plutosdr_source as plutosdr_source
+import source.rtl_sdr_source.rtl_sdr_source as rtl_sdr_source
 import downlink as demodulator
 
 parser = argparse.ArgumentParser()
@@ -22,6 +23,9 @@ elif args.source == "pluto":
 elif args.source == "fcd+":
     print "Funcube Dongle Plus"
     funcube_source.main()
+elif args.source == "rtl-sdr":
+    print "RTL-SDR"
+    rtl_sdr_source.main()
 elif args.source == "demodulator":
     print "demodulator"
     demodulator.main()
