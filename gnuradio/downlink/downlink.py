@@ -6,7 +6,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Downlink
-# Generated: Wed Aug 22 00:52:19 2018
+# Generated: Fri Aug 24 18:06:46 2018
 # GNU Radio version: 3.7.12.0
 ##################################################
 
@@ -30,6 +30,7 @@ from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio import qtgui
+from gnuradio import zeromq
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
@@ -113,7 +114,7 @@ class downlink(gr.top_block, Qt.QWidget):
         self.tab_layout_3 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_3)
         self.tab_grid_layout_3 = Qt.QGridLayout()
         self.tab_layout_3.addLayout(self.tab_grid_layout_3)
-        self.tab.addTab(self.tab_widget_3, 'Tab 3')
+        self.tab.addTab(self.tab_widget_3, 'Constellation')
         self.tab_widget_4 = Qt.QWidget()
         self.tab_layout_4 = Qt.QBoxLayout(Qt.QBoxLayout.TopToBottom, self.tab_widget_4)
         self.tab_grid_layout_4 = Qt.QGridLayout()
@@ -168,6 +169,7 @@ class downlink(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(1, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
+        self.zeromq_sub_source_0 = zeromq.sub_source(gr.sizeof_gr_complex, 1, 'tcp://localhost:20001', 100, False, -1)
         self.save_frame_0 = gr_kiss.save_frame('downlink_frames', 'Downlink')
         self.root_raised_cosine_filter_0_0 = filter.fir_filter_ccf(1, firdes.root_raised_cosine(
         	1, samp_rate, symb_rate, alpha, 300))
@@ -402,7 +404,6 @@ class downlink(gr.top_block, Qt.QWidget):
         	noise_seed=0,
         	block_tags=False
         )
-        self.blocks_udp_source_0 = blocks.udp_source(gr.sizeof_gr_complex*1, '127.0.0.1', 20001, 1472, True)
         self.blocks_message_debug_0 = blocks.message_debug()
 
 
@@ -413,8 +414,6 @@ class downlink(gr.top_block, Qt.QWidget):
         self.msg_connect((self.kiss_hdlc_deframer_0, 'out'), (self.blocks_message_debug_0, 'print_pdu'))
         self.msg_connect((self.kiss_hdlc_deframer_0, 'out'), (self.frame_sink_1, 'in'))
         self.msg_connect((self.kiss_hdlc_deframer_0, 'out'), (self.save_frame_0, 'in'))
-        self.connect((self.blocks_udp_source_0, 0), (self.channels_channel_model_0_0, 0))
-        self.connect((self.blocks_udp_source_0, 0), (self.qtgui_waterfall_sink_x_1, 0))
         self.connect((self.channels_channel_model_0_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
         self.connect((self.channels_channel_model_0_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
         self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_descrambler_bb_0, 0))
@@ -429,6 +428,8 @@ class downlink(gr.top_block, Qt.QWidget):
         self.connect((self.kiss_nrzi_decode_0, 0), (self.kiss_hdlc_deframer_0, 0))
         self.connect((self.root_raised_cosine_filter_0_0, 0), (self.digital_symbol_sync_xx_0, 0))
         self.connect((self.root_raised_cosine_filter_0_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.zeromq_sub_source_0, 0), (self.channels_channel_model_0_0, 0))
+        self.connect((self.zeromq_sub_source_0, 0), (self.qtgui_waterfall_sink_x_1, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "downlink")
