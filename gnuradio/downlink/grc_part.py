@@ -1,6 +1,7 @@
 import argparse
 import source.file_source.iq_file_main as file_source
 import source.funcube_source.funcube_source as funcube_source
+import source.plutosdr_source.plutosdr_source as plutosdr_source
 import downlink as demodulator
 
 parser = argparse.ArgumentParser()
@@ -16,6 +17,7 @@ if args.source == "iq_file":
     print "IQ File"
     file_source.application()
 elif args.source == "pluto":
+    plutosdr_source.main()
     print "Pluto"
 elif args.source == "fcd+":
     print "Funcube Dongle Plus"
